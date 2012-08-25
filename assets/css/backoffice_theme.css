@@ -1,0 +1,146 @@
+/*------------------------------------------------------------------------*/
+/* Header */
+/*------------------------------------------------------------------------*/
+
+#header
+{
+	background: #D93A00 url(../img/bg_header.jpg);	
+	background-size: cover;
+	color: #FFF;
+	height: 80px;
+	text-align: right;
+	padding: 10px;
+	position: relative;
+}
+
+#header h1
+{
+	font-size: 28px;
+	margin: 0px 0px 0px 10px;
+	font-weight: bold;
+	line-height: 80px;
+	text-align: left;
+	float:left;
+	
+	/* CSS3 */
+	
+	text-shadow: 1px 1px 2px #666;
+}
+
+#header h2
+{
+	font-size: 24px;
+	margin: 0px;
+	font-weight: normal;
+}
+
+#header h3
+{
+	font-size: 18px;
+	margin: 0px;
+	font-weight: normal;
+}
+
+#header img { margin: 5px 0px; }
+
+#header #logo
+{
+	position: absolute;
+	width: 128px;
+	height: 100px;
+	top: 0;
+	margin-left: -64px;
+	left: 50%;
+	background-image: url(../img/logo.png);	
+	background-position: center;
+}
+
+/*------------------------------------------------------------------------*/
+/* Table */
+/*------------------------------------------------------------------------*/
+
+.table
+{
+	clear: both;
+	width: 100%;
+	margin-bottom: 15px;
+	border: 0px solid #669900;
+	border-collapse: collapse;
+	color: #666666;
+	font-size: 12px;
+}
+
+.tr_bgcolor1 { background-color: #FFFFFF; }
+
+.table tbody tr:nth-child(even) { background-color: #E8F4FB; }
+
+.table tbody tr:hover { background-color: #FFFFCC; }
+.table tbody tr.checked { background-color: #B5DDF2; }
+
+.table th
+{
+	background-color: #CCC;
+	border: 1px solid #AAA;
+	color: #333;
+	cursor: default;
+	font-size: 12px;
+	font-weight: normal;
+	padding: 2px 5px;
+	text-align: center;
+	white-space: nowrap;
+}
+
+.table th:first-child { width: 20px; }
+
+/*.table th:hover	{ background-color: #36AAFF; border: 1px solid #36AAFF; }*/
+
+.table th img { margin: 1px 5px; }
+
+.table td
+{
+	cursor: pointer;
+	border: 1px solid #AAAAAA;
+	padding: 5px;
+	vertical-align: top;
+}
+
+.table td ul
+{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+.table td ul li
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+/*------------------------------------------------------------------------*/
+/* Footer */
+/*------------------------------------------------------------------------*/
+
+#footer
+{
+	/*background: url(../img/bg_menu_main.png) repeat-x;*/
+	background: #D93A00 url(../img/bg_header.jpg);	
+	background-size: cover;
+	color: #FFF;
+	font-size: 12px;
+	padding: 5px;
+	text-align: center;
+	
+	/* CSS3 */
+	
+/*	background-size: contain;
+	-moz-background-size: contain;
+	
+	box-shadow: 0px 0px 5px #333;
+	-moz-box-shadow: 0px 0px 5px #333;
+	-webkit-box-shadow: 0px 0px 5px #333;*/
+}
+
+
+/* End of file backoffice_theme.css */
+/* Location: assets/modules/backoffice/css/backoffice_theme.css */
