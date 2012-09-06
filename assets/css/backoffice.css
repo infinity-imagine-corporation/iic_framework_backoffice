@@ -14,11 +14,11 @@ body
 	background-color: rgba(128, 128, 128, 0.9);
 	
 	/* Gradient */
-	background-image: radial-gradient(center, ellipse cover, rgba(255, 255, 255, 0.5) 10%, rgba(128, 128, 128, 0.9) 100%); 
-	background-image: -ms-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 0.5) 10%, rgba(128, 128, 128, 0.9) 100%); 
-	background-image: -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 0.5) 10%, rgba(128, 128, 128, 0.9) 100%); 
-	background-image: -moz-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 0.5) 10%, rgba(128, 128, 128, 0.9) 100%); 
-	background-image: -o-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 0.5) 10%, rgba(128, 128, 128, 0.9) 100%); 
+	background-image: radial-gradient(center, ellipse cover, rgba(101, 146, 188, 0.5) 10%, rgba(72, 95, 87, 0.9) 100%); 
+	background-image: -ms-radial-gradient(center, ellipse cover, rgba(101, 146, 188, 0.5) 10%, rgba(72, 95, 87, 0.9) 100%); 
+	background-image: -webkit-radial-gradient(center, ellipse cover, rgba(101, 146, 188, 0.5) 10%, rgba(72, 95, 87, 0.9) 100%); 
+	background-image: -moz-radial-gradient(center, ellipse cover, rgba(101, 146, 188, 0.5) 10%, rgba(72, 95, 87, 0.9) 100%); 
+	background-image: -o-radial-gradient(center, ellipse cover, rgba(101, 146, 188, 0.5) 10%, rgba(72, 95, 87, 0.9) 100%); 
 }
 
 #container
