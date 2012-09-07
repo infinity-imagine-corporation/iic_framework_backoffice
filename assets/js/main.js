@@ -16,7 +16,7 @@ $(function()
 	});
 	
 	// ------------------------------------------------------------------------
-	// Search Section - Action
+	// Search Section
 	// ------------------------------------------------------------------------
 
 	$('#keyword').keyup(function()
@@ -47,11 +47,10 @@ $(function()
 	});
 	
 	// ------------------------------------------------------------------------
-	// Input[checkbox] - Action
+	// Main table checkbox
 	// ------------------------------------------------------------------------
 
-	/* Select all */
-
+	// Select all
 	$('#select_all').live('click', function()
 	{
 		if($(this).attr('checked') == 'checked')
@@ -65,44 +64,18 @@ $(function()
 		}
 	});
 	
-	/* Hilite selected row */
-
+	// Hilite selected row
 	$('tbody').find('input[type=checkbox]').live('click', function()
 	{
 		$(this).parent().parent().toggleClass('checked');
 	});
-	
-	// ------------------------------------------------------------------------
-	// Buttion - Setup
-	// ------------------------------------------------------------------------
-
-	/* Button create */
-
-	$('.button_create').button
-	({
-		icons :
-		{
-			primary : "ui-icon-plusthick"
-		}
-	})
-
-	/* Button delete */
-
-	$(".button_delete").button
-	({
-		icons :
-		{
-			primary : "ui-icon-trash"
-		}
-	})
 
 	// ------------------------------------------------------------------------
-	// Buttion - Action
+	// Button create
 	// ------------------------------------------------------------------------
 
-	/* Button create */
-
-	$('.button_create').click(function()
+	$('.button_create').button({ icons: { primary : "ui-icon-plusthick" }})
+	.click(function()
 	{
 		// Setup variable
 		var url = URL_SERVER + $('#config_uri_form').val();
@@ -111,7 +84,9 @@ $(function()
 		get_create_form(url);
 	});
 	
-	/* Button update (when clik on table row) */
+	// ------------------------------------------------------------------------
+	// Button read (when clik on table row)
+	// ------------------------------------------------------------------------
 
 	$('table.main.table td:not(td:has(input[type=checkbox])):not([colspan])').live('click', function()
 	{
@@ -124,9 +99,12 @@ $(function()
 		get_update_form(url);
 	});
 	
-	/* Button delete */
+	// ------------------------------------------------------------------------
+	// Button delete
+	// ------------------------------------------------------------------------
 
-	$('.button_delete').click(function()
+	$(".button_delete").button({ icons: { primary : "ui-icon-trash" }})
+	.click(function()
 	{
 		// Setup variable
 		var checked = $('tbody').find('input[type=checkbox]:checked').length;
@@ -146,7 +124,9 @@ $(function()
 		}
 	});
 	
-	/* Button delete attachfile*/
+	// ------------------------------------------------------------------------
+	// Button delete attachfile
+	// ------------------------------------------------------------------------
 	
 	$('a.delete_attachfile').live('click', function()
 	{
@@ -159,7 +139,9 @@ $(function()
 		$(file_id).val('1');
 	});
 	
-	/* Button remove content*/
+	// ------------------------------------------------------------------------
+	// Button remove content
+	// ------------------------------------------------------------------------
 	
 	$('a.remove_content').live('click', function()
 	{
@@ -169,10 +151,8 @@ $(function()
 	});
 	
 	// ------------------------------------------------------------------------
-	// Dialog - Setup
+	// Dialog - alert
 	// ------------------------------------------------------------------------
-
-	/* Dialog alerte */
 
 	$('#dialog_alert').dialog
 	({
@@ -194,7 +174,9 @@ $(function()
 					  ]
 	});
 	
-	/* Dialog error */
+	// ------------------------------------------------------------------------
+	// Dialog error
+	// ------------------------------------------------------------------------
 	
 	$('#dialog_error').dialog
 	({
@@ -207,7 +189,7 @@ $(function()
 		modal		: false,
 		buttons		: [
 					  	  {
-							  text	: 'What the fuuuuuu... !!!',
+							  text	: 'WTF !!!',
 							  click	: function()
 									  {
 										  $(this).dialog("close");
@@ -215,8 +197,10 @@ $(function()
 						  }
 					  ]
 	});
-
-	/* Dialog create */
+	
+	// ------------------------------------------------------------------------
+	// Dialog create
+	// ------------------------------------------------------------------------
 
 	$('#dialog_create').dialog
 	({
@@ -233,7 +217,8 @@ $(function()
 							  click	: function()
 									  {
 										  create_content();
-									  }
+									  },
+							  icons : { primary : "ui-icon-plusthick" }
 						  }
 					  ]
 	});
@@ -246,7 +231,18 @@ $(function()
 	.addClass('ui-button-text-icon-primary')
 	.prepend('<span class="ui-button-icon-primary ui-icon ui-icon-disk"/>');
 
-	/* Dialog update */
+	// Submit form when press enter
+	$('#dialog_create').keypress(function(event)
+	{
+		if(event.keyCode == '13')
+		{
+			create_content();
+		}
+	})
+	
+	// ------------------------------------------------------------------------
+	// Dialog update
+	// ------------------------------------------------------------------------
 
 	$('#dialog_update').dialog
 	({
@@ -277,7 +273,18 @@ $(function()
 	.addClass('ui-button-text-icon-primary')
 	.prepend('<span class="ui-button-icon-primary ui-icon ui-icon-disk"/>');
 
-	/* Dialog delete */
+	// Submit form when press enter
+	$('#dialog_update').keypress(function(event)
+	{
+		if(event.keyCode == '13')
+		{
+			update_content();
+		}
+	})
+	
+	// ------------------------------------------------------------------------
+	// Dialog delete
+	// ------------------------------------------------------------------------
 
 	$('#dialog_delete').dialog
 	({
@@ -298,33 +305,13 @@ $(function()
 						  }
 					  ]
 	});
-
-	// ------------------------------------------------------------------------
-	// Dialog - Action
-	// ------------------------------------------------------------------------
-
-	$('#dialog_create').keypress(function(event)
-	{
-		if(event.keyCode == '13')
-		{
-			create_content();
-		}
-	})
-
-	$('#dialog_update').keypress(function(event)
-	{
-		if(event.keyCode == '13')
-		{
-			update_content();
-		}
-	})
 	
 	// ------------------------------------------------------------------------
-	// Validator
+	// Init form validator 
 	// ------------------------------------------------------------------------
 
-	jQuery.validator.setDefaults(
-	{
+	jQuery.validator.setDefaults
+	({
 		debug : true,
 		errorElement : "i",
 		errorPlacement : function(error, element)
