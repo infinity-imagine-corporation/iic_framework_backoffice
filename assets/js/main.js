@@ -47,6 +47,29 @@ $(function()
 	});
 	
 	// ------------------------------------------------------------------------
+	// Sort table content when click th
+	// ------------------------------------------------------------------------
+	
+	$('table.main.table th').toggle
+	(
+		function() 
+		{
+			sort_content($(this).attr('axis'), 'ASC');
+			$(this).append('<span> ▴</span>')
+		},
+		function() 
+		{
+			sort_content($(this).attr('axis'), 'DESC');
+			$(this).find('span').remove();
+			$(this).append('<span> ▾</span>')
+		},
+		function() 
+		{
+			sort_content('', '');
+			$(this).find('span').remove();
+		}
+    );
+	// ------------------------------------------------------------------------
 	// Main table checkbox
 	// ------------------------------------------------------------------------
 
@@ -431,6 +454,40 @@ function get_content(limit, offset)
 		$('#dialog_alert').dialog('open');
 	});
 }
+
+// ------------------------------------------------------------------------
+
+/**
+ * Sort content via ajax
+ */	
+ 
+ function sort_content(order_by, order_direction)
+ {
+	var url = URL_SERVER + $('#config_uri_list').val()
+	var data = {
+					'order_by'			: order_by,
+					'order_direction' 	: order_direction
+			   };
+	
+	// Change url to sort_content		   
+	url = url.replace('/list_content', '/sort_content');
+			   
+	// Setup ajax
+	$.post(url, data, function(response)
+	{
+		update_table_content(response);	
+	}, "json")
+	.success(function() 
+	{ 
+		$('#preload').slideUp('fast'); 
+	})
+	.error(function(response) 
+	{  
+		$("#dialog_error").html(response)
+		$("#dialog_error").dialog('open');
+		$('#preload').slideUp('fast');
+	});	
+ }
 
 // ------------------------------------------------------------------------
 
