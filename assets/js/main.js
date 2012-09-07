@@ -376,6 +376,12 @@ function get_update_form(url)
 
 // ------------------------------------------------------------------------
 
+/**
+ * Adjust screen layout to fit windows size
+ *
+ * @param string url
+ */
+
 function adjust_layout()
 {
 	var page_height = $(window).height();
