@@ -50,7 +50,7 @@ $(function()
 	// Sort table content when click th
 	// ------------------------------------------------------------------------
 	
-	$('table.main.table th').toggle
+	$('table.main.table th:not(:has(input[type=checkbox]))').toggle
 	(
 		function() 
 		{
@@ -215,7 +215,9 @@ $(function()
 							  text	: 'WTF !!!',
 							  click	: function()
 									  {
-										  $(this).dialog("close");
+									  	  $(this).html('');
+										  $(this).dialog('option', 'title', '');
+										  $(this).dialog('close');
 									  }
 						  }
 					  ]
@@ -569,6 +571,7 @@ function create_content()
 						'target' 		: '',
 						'beforeSubmit' 	: showRequest,
 						'success' 		: showResponse,
+						'error'			: showError,
 						'url' 			: url,
 						'type' 			: 'post'
 				  };
@@ -585,20 +588,24 @@ function create_content()
 	// Post-submit callback
 	function showResponse(responseText, statusText, xhr, $form)
 	{
-		if(statusText == 'success')
-		{
-			get_content();
+		get_content();
+	
+		$('#preload').slideUp('fast');
 		
-			$('#preload').slideUp('fast');
-			
-			dialog.dialog('close');
-		}
-		else
-		{
-			$("#dialog_error").html(responseText)
-			$("#dialog_error").dialog('open');
-			$('#preload').slideUp('fast');
-		}
+		dialog.dialog('close');
+	}
+
+	// Error callback
+	function showError(xhr, textStatus, errorThrown)
+	{
+		//console.log(xhr);
+		var title = xhr.status + " " + errorThrown;
+		var content = strip_html(xhr.responseText)
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
+		$("#dialog_error").dialog('open');
+		$('#preload').slideUp('fast');
 	}
 
 	// Validate form
@@ -717,6 +724,47 @@ function search_content()
 		$('#dialog_alert').dialog('open');
 	});
 }
+
+// ------------------------------------------------------------------------
+
+/**
+ * Remove only tag for tag doctype, html, body 
+ * Remove tag and content for tag style, script
+ * 
+ * @param	mixed	html
+ * @return	mixed
+ */
+
+function strip_html(html)
+{
+	var taxt = html
+			        // Remove !DOCTYPE
+			        .replace(/<!DOCTYPE.*?>/ig, "")
+			        
+			        // Remove html tags
+			        .replace(/<html.*?>/ig, "")
+			        .replace(/<\/html.*?>/ig, "")
+			        
+			        // Remove content in head tags.
+			        .replace(/<\s*head[^>]*>[\s\S]*?<\/head>/mig, "")
+			        
+			        // Remove body tags
+			        .replace(/<body.*?>/ig, "")
+			        .replace(/<\/body.*?>/ig, "")
+			        
+			        // Remove content in script tags.
+			        .replace(/<\s*script[^>]*>[\s\S]*?<\/script>/mig, "")
+			        
+			        // Remove content in style tags.
+			        .replace(/<\s*style[^>]*>[\s\S]*?<\/style>/mig, "")
+			        
+			        // Remove content in comments.
+			        .replace(/<!--.*?-->/mig, "")
+        
+	return taxt;
+}
+
+// ------------------------------------------------------------------------
 
 
 /* End of file main.js */
