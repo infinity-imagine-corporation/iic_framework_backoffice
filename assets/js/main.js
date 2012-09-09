@@ -631,6 +631,7 @@ function update_content()
 					  'target'		: '',   
 					  'beforeSubmit': showRequest, 
 					  'success'		: showResponse,
+					  'error'		: showError,
 					  'url'			: url,
 					  'type'		: 'post'
 				  }; 
@@ -653,6 +654,19 @@ function update_content()
 		
 		dialog.dialog('close');
 	} 
+
+	// Error callback
+	function showError(xhr, textStatus, errorThrown)
+	{
+		//console.log(xhr);
+		var title = xhr.status + " " + errorThrown;
+		var content = strip_html(xhr.responseText)
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
+		$("#dialog_error").dialog('open');
+		$('#preload').slideUp('fast');
+	}
 	
 	// Validate form
 	if(form.valid())
@@ -689,11 +703,16 @@ function delete_content()
 		get_content();
 	})
 	.success(function() { $('#dialog_delete').dialog('close'); })
-	.error(function() 
+	.error(function(xhr, textStatus, errorThrown) 
 	{  
-		var msg = 'Error: delete_content(' + url + ')';
-		$('#dialog_alert_message').html(msg);
-		$('#dialog_alert').dialog('open');
+		//console.log(xhr);
+		var title = xhr.status + " " + errorThrown;
+		var content = strip_html(xhr.responseText)
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
+		$("#dialog_error").dialog('open');
+		$('#preload').slideUp('fast');
 	});
 }
 
