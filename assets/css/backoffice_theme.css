@@ -4,7 +4,8 @@
 
 #header
 {
-	background: #D93A00 url(../img/bg_header.jpg);	
+	background: #D93A00 top center;	
+	background-image: url(../img/bg_header.jpg);
 	background-size: cover;
 	color: #FFF;
 	height: 80px;
@@ -24,7 +25,7 @@
 	
 	/* CSS3 */
 	
-	text-shadow: 1px 1px 2px #666;
+	text-shadow: 1px 1px 5px #000;
 }
 
 #header h2
@@ -32,6 +33,7 @@
 	font-size: 24px;
 	margin: 0px;
 	font-weight: normal;
+	text-shadow: 1px 1px 5px #000;
 }
 
 #header h3
@@ -39,6 +41,7 @@
 	font-size: 18px;
 	margin: 0px;
 	font-weight: normal;
+	text-shadow: 1px 1px 5px #000;
 }
 
 #header img { margin: 5px 0px; }
@@ -52,6 +55,7 @@
 	margin-left: -64px;
 	left: 50%;
 	background-image: url(../img/logo.png);	
+	background-size: cover;
 	background-position: center;
 }
 
@@ -126,12 +130,12 @@
 #footer
 {
 	/*background: url(../img/bg_menu_main.png) repeat-x;*/
-	background: #D93A00 url(../img/bg_header.jpg);	
-	background-size: cover;
+	background: #D93A00 url(../img/bg_header.jpg) bottom;	
 	color: #FFF;
 	font-size: 12px;
 	padding: 5px;
 	text-align: center;
+	text-shadow: 1px 1px 5px #000;
 	
 	/* CSS3 */
 	
