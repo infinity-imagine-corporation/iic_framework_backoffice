@@ -41,6 +41,7 @@ $(function()
 </script>
 <style type="text/css">
 li { list-style: circle; margin-left: 15px; }
+li:last-child { margin-bottom: 15px; }
 hr { border-top-style: dashed; }
 div.ui-dialog a.ui-dialog-titlebar-close { display: none; }
 #dialog { margin-top: 10px; }
