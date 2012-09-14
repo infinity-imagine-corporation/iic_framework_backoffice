@@ -1,4 +1,4 @@
-<ul class="menu_main">	
+<ul class="menu_main ui-state-default">	
 	<!-- Institute modules -->
 	<?php echo Modules::run('institute/get_menu'); ?>
 	

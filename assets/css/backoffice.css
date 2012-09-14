@@ -37,15 +37,15 @@ body
 {
 	/*background: url(../img/bg_menu_main.png) repeat-x;*/
 	background-color: rgba(255, 255, 255, 0.8);
-	margin: 12px 0px 0px 0px;
-	padding: 0px 15px 0px 94px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 15px 0px 70px;
 	position: relative;
 	height: 40px;
 	
 	/* CSS3 */
-	box-shadow: 0px 1px 5px #333;
-	-moz-box-shadow: 0px 1px 5px #333;
-	-webkit-box-shadow: 0px 1px 5px #333;
+	box-shadow: 0px 1px 3px #999;
+	-moz-box-shadow: 0px 1px 3px #999;
+	-webkit-box-shadow: 0px 1px 3px #999;
 }
 
 .menu_main > li
@@ -109,7 +109,6 @@ body#Category .menu_main li#Category a
 	text-shadow: 0px 0px 3px #333;
 	
 	/* CSS3 */
-	
 	box-shadow: 0px 0px 2px #333 inset;
 	-moz-box-shadow: 0px 0px 2px #333 inset;
 	-webkit-box-shadow: 0px 0px 2px #333 inset;
@@ -131,10 +130,9 @@ body#Category .menu_main li#Category a
 	z-index: 1000;
 	
 	/* CSS3 */
-	
-	box-shadow: 1px 1px 3px #333;
-	-moz-box-shadow: 1px 1px 3px #333;
-	-webkit-box-shadow: 1px 1px 3px #333;
+	box-shadow: 1px 1px 2px #333;
+	-moz-box-shadow: 1px 1px 2px #333;
+	-webkit-box-shadow: 1px 1px 2px #333;
 	
 	border-bottom-left-radius: 3px;
 	border-bottom-right-radius: 3px;
