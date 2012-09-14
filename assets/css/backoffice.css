@@ -348,12 +348,6 @@ body#Category .menu_main li#Category a
 
 .ui-dialog #tabs .ui-tabs-panel { padding-left: 10px; }
 
-.ui-dialog #tabs div[id^=tabs-] 
-{ 
-	max-width: 443px; 
-	overflow-x: hidden;
-}
-
 .ui-dialog #tabs div[id^=tabs-] img
 { 
 	max-width: 100%; 

@@ -101,7 +101,7 @@ input[type=text], input[type=password] { width: 100%; }
 				<label for="password"><?php echo $this->lang->line('password') ?></label>
 				<input type="password" name="password" id="password" />
 				<div class="right">
-					<input name="Submit" id="submit" type="submit" value="<?php echo $this->lang->line('login') ?>" />
+					<input name="Submit" id="submit" type="submit" value="<?php echo $this->lang->line('login') ?>" class="ui-button-primary" />
 				</div>
 			<?php echo form_close() ?>
 		</div>
