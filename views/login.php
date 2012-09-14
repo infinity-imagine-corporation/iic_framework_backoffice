@@ -16,12 +16,27 @@ $(function()
 
 <style type="text/css">
 
+.table
+{
+	display: table;
+	height: 100%;
+	position: absolute;
+	top: 0;
+}
+
+.table_cell 
+{ 
+	display: table-cell; 
+	vertical-align: middle;
+}
+
 div.gadget 
 { 
-	padding: 0px; 
-	max-width: 350px; 
-	margin: auto;
+	border: 1px solid #666;
 	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+	max-width: 480px; 
+	margin: auto;
+	padding: 0px; 
 }
 
 #header
@@ -33,7 +48,7 @@ div.gadget
 #form_section 
 { 
 	background: #FFF; 
-	padding: 20px;
+	padding: 32px 20px 20px 20px;
 }
 
 #form_section label
@@ -63,23 +78,37 @@ input[type=text], input[type=password] { width: 100%; }
 	margin-right: -10px; 
 }
 
-.table
+#header
 {
-	display: table;
-	height: 100%;
-	position: absolute;
-	top: 0;
-}
-
-.table_cell 
-{ 
-	display: table-cell; 
-	vertical-align: middle;
+	height: 80px;
+	padding: 10px;
+	margin: 0px;
+	text-align: right;
 }
 
 #header #logo
 {
-	top: -128px;
+	background-color: rgba(255, 255, 255, 0.95);
+	border-radius: 3px;
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+	width: 128px;
+	height: 128px;
+	top: -14px;
+	left: 14px;
+}
+
+#header img
+{
+	width: 320px;
+}
+
+#footer
+{
+	background: #EEE;	
+	color: #666;
+	font-size: 11px;
+	padding: 5px;
+	text-align: center;
 }
 </style>
 </head>

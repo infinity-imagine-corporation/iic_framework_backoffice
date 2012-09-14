@@ -12,14 +12,10 @@ $theme = Modules::run('backoffice/theme/get_theme');
 <body id="<?php echo $page ?>">
 <div id="container">
 	<div id="header">
-		<div id="logo"></div>
-		<h1><?php echo $title ?></h1>
-		<h2><?php echo $theme['header_text_1'] ?></h2>
-		<?php echo image_asset('line_gradient_300px.png', 'backoffice', array('alt'=>'line')); ?>
-		<h3><?php echo $theme['header_text_2'] ?></h3>
-	</div>
-	<div id="menu">
-		<?php $this->load->view('backoffice/menu'); ?>
+		<a href="<?php echo site_url() ?>/backoffice"><div id="logo"></div></a>
+		<div id="menu">
+			<?php $this->load->view('backoffice/menu'); ?>
+		</div>
 	</div>
 	<div id="navigator">
 		<?php $this->load->view('backoffice/navigator'); ?>
