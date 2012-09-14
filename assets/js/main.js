@@ -408,11 +408,15 @@ function get_update_form(url)
 function adjust_layout()
 {
 	var page_height = $(window).height();
-	var content_height = (page_height - 180 - 35 - 30); // window - header - nav - footer
+	var content_height = (page_height - 141 - 35 - 17); // window - header - nav - footer
 	
+	// Set content min height
 	$('#content').css('min-height', content_height);
 	
-	$('.dashboard').css('min-height', content_height - 50);
+	// Set dashborad min height
+	$('.dashboard').css('min-height', content_height - 35);
+	
+	//alert(content_height);
 }
 
 // ------------------------------------------------------------------------
@@ -717,6 +721,8 @@ function search_content()
 		$('#dialog_alert').dialog('open');
 	});
 }
+
+// ------------------------------------------------------------------------
 
 
 /* End of file main.js */
