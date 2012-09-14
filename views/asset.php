@@ -24,7 +24,8 @@ LANG_DISABLE = '<?php echo $this->lang->line('disable') ?>';
 
 <!--jQuery UI Theme-->
 <?php echo js_asset('jquery-ui-1.8.10.custom.min.js', 'backoffice');?>
-<?php echo css_asset('../../third_party/jquery/ui/themes/aristo/Aristo.css', 'iic_tools');?>
+<?php echo css_asset('../../third_party/jquery/ui/themes/bootstrap/jquery.ui.bootstrap.css', 'iic_tools');?>
+<?php echo css_asset('../../third_party/jquery/ui/themes/bootstrap/hack_for_iic_framework.css', 'iic_tools');?>
 
 <!--jQuery UI - Date picker-->
 <?php echo js_asset('jquery-ui-1.8.10.offset.datepicker.min.js', 'backoffice');?>
