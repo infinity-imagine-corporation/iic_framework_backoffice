@@ -6,7 +6,7 @@
 <link rel="shortcut icon" href="../favicon.ico" />
 <?php $this->load->view('backoffice/asset'); ?>
 
-<script type="text/javascript">
+<script type="text/javascript">	
 $(function() 
 {
 	$("input[type=submit]").button();
@@ -51,7 +51,7 @@ div.gadget
 	padding: 32px 20px 20px 20px;
 }
 
-#form_section label
+ label
 {
 	font-size: 14px;
 }
@@ -70,12 +70,18 @@ form
 	margin-left: -13px;
 }
 
-input[type=text], input[type=password] { width: 100%; }
+#form_section input[type=text], 
+#form_section input[type=password] 
+{ 
+	font-size: 1.5em;
+	width: 100%; 
+}
 
 #submit
 { 
 	position: relative;
 	margin-right: -10px; 
+	padding: 12px 16px;
 }
 
 #header
