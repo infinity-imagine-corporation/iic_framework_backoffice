@@ -249,12 +249,12 @@ $(function()
 	});
 
 	// Set icon
-	$('#dialog_create')
+	/*$('#dialog_create')
 	.next()
 	.find('button')
 	.removeClass('ui-button-text-only')
 	.addClass('ui-button-text-icon-primary')
-	.prepend('<span class="ui-button-icon-primary ui-icon ui-icon-disk"/>');
+	.prepend('<span class="ui-button-icon-primary ui-icon ui-icon-disk"/>');*/
 
 	// Submit form when press enter
 	$('#dialog_create').keypress(function(event)
@@ -291,12 +291,12 @@ $(function()
 	});
 
 	// Set icon
-	$('#dialog_update')
+	/*$('#dialog_update')
 	.next()
 	.find('button')
 	.removeClass('ui-button-text-only')
 	.addClass('ui-button-text-icon-primary')
-	.prepend('<span class="ui-button-icon-primary ui-icon ui-icon-disk"/>');
+	.prepend('<span class="ui-button-icon-primary ui-icon ui-icon-disk"/>');*/
 
 	// Submit form when press enter
 	$('#dialog_update').keypress(function(event)
