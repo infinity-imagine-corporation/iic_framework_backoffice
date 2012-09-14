@@ -35,13 +35,14 @@ body
 
 .menu_main
 {
-	background: url(../img/bg_menu_main.png) repeat-x;
+	/*background: url(../img/bg_menu_main.png) repeat-x;*/
+	background-color: rgba(255, 255, 255, 0.8);
+	margin: 12px 0px 0px 0px;
+	padding: 0px 15px 0px 94px;
 	position: relative;
 	height: 40px;
-	padding: 0px 15px;
 	
 	/* CSS3 */
-	
 	box-shadow: 0px 1px 5px #333;
 	-moz-box-shadow: 0px 1px 5px #333;
 	-webkit-box-shadow: 0px 1px 5px #333;
@@ -53,7 +54,7 @@ body
 	height: 45px;
 	list-style: none;
 	position: relative;
-	margin: 0px 15px 0px 0px;
+	margin: 0px;
 }
 
 .menu_main > li.float_r
@@ -74,7 +75,6 @@ body
 	text-shadow: 0px 0px 2px #FFF;
 	
 	/* CSS3 */
-	
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -413,7 +413,9 @@ a.remove_content
 /* Button */
 /*------------------------------------------------------------*/
 
-.button_delete { margin-right: 30px; }
+.button_create { margin-left: 10px; }
+
+.button_delete { margin-right: 10px; }
 
 .button_save { margin: 30px auto 20px auto; }
 
