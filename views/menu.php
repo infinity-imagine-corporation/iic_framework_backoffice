@@ -1,6 +1,4 @@
-<ul class="menu_main">
-	<li id="home"><?php echo anchor('backoffice', $this->lang->line('home')) ?></li>
-	
+<ul class="menu_main">	
 	<!-- Institute modules -->
 	<?php echo Modules::run('institute/get_menu'); ?>
 	
