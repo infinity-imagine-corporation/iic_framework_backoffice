@@ -348,6 +348,11 @@ body#Category .menu_main li#Category a
 
 .ui-dialog #tabs .ui-tabs-panel { padding-left: 10px; }
 
+.ui-dialog #tabs div[id^=tabs-] img
+{ 
+	max-width: 100%; 
+}
+
 .dialog input[type=text], 
 .dialog input[type=password], 
 .dialog input[type=file], 
@@ -386,6 +391,7 @@ body#Category .menu_main li#Category a
 	margin: 1px -12px 1px 0px;
 }
 
+.attachfile ul li p { margin: 5px 0; }
 
 .attachfile ul li a.delete_attachfile, 
 .attachfile ul li a.remove_content,
