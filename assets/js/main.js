@@ -3,7 +3,7 @@
 // ------------------------------------------------------------------------
 
 $(function()
-{
+{	
 	// ------------------------------------------------------------------------
 	// Adjust layout to fit screen
 	// ------------------------------------------------------------------------
@@ -408,7 +408,7 @@ function get_update_form(url)
 function adjust_layout()
 {
 	var page_height = $(window).height();
-	var content_height = (page_height - 141 - 35 - 17); // window - header - nav - footer
+	var content_height = (page_height - 94 - 35 - 17); // window - header - nav - footer
 	
 	// Set content min height
 	$('#content').css('min-height', content_height);

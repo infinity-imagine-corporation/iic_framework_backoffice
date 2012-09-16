@@ -38,13 +38,13 @@
 	<table class="main table">
 		<thead>
 			<tr>
-				<th><input type="checkbox" id="select_all" /></th>
+				<th class="ui-state-default"><input type="checkbox" id="select_all" /></th>
 				<?php
 				foreach($th as $data)
 				{
 					echo '<th axis="'.$data['axis'].'"';
 					echo (isset($data['align'])) ? 'align="'.$data['align'].'"' : '';
-					echo '>'.$data['label'].'</th>';
+					echo ' class="ui-state-default">'.$data['label'].'</th>';
 				}
 				?>
 			</tr>
