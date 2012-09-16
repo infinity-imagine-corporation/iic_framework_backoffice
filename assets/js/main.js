@@ -117,9 +117,17 @@ $(function()
 		var form_uri = $('#config_uri_form').val();
 		var id_content = $(this).parent().attr('rel');
 		var url = URL_SERVER + form_uri + '/' + id_content;
+		var is_readonly = ($('table.main.table tbody').attr('class') == 'readonly') ? true : false;
 
 		// Call ajax function
-		get_update_form(url);
+		if(is_readonly)
+		{
+			get_read_form(url);
+		}
+		else
+		{
+			get_update_form(url)
+		}
 	});
 	
 	// ------------------------------------------------------------------------
@@ -139,7 +147,7 @@ $(function()
 		}
 		else
 		{
-			var msg = 'โปรดเลือ�?ข้อมูลอย่างน้อย 1 �?ถว.';
+			var msg = 'โปรดเลือ�?ข้อมูลอย่างน้อย 1 �?ถว.';
 			$('#dialog_alert_message').html(msg);
 
 			// Open dialog
@@ -264,6 +272,30 @@ $(function()
 			create_content();
 		}
 	})
+	
+	// ------------------------------------------------------------------------
+	// Dialog read
+	// ------------------------------------------------------------------------
+
+	$('#dialog_read').dialog
+	({
+		title		: '',
+		autoOpen	: false,
+		draggable	: false,
+		resizable	: false,
+		width		: 'auto',
+		height		: 600,
+		modal		: true,
+		buttons		: [
+					  	  {
+							  text	: LANG_OK,
+							  click	: function()
+									  {
+										  $('#dialog_read').dialog('close')
+									  }
+						  }
+					  ]
+	});
 	
 	// ------------------------------------------------------------------------
 	// Dialog update
