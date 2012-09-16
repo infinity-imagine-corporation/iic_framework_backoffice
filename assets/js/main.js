@@ -218,9 +218,35 @@ $(function()
 		width		: 890,
 		height		: 600,
 		modal		: false,
+		beforeClose	: function() { $(this).html('') },
 		buttons		: [
 					  	  {
 							  text	: 'WTF !!!',
+							  click	: function()
+									  {
+										  $(this).dialog("close");
+									  }
+						  }
+					  ]
+	});
+	
+	// ------------------------------------------------------------------------
+	// Dialog report
+	// ------------------------------------------------------------------------
+
+	$('#dialog_report').dialog
+	({
+		title		: 'รายงานผล',
+		autoOpen	: false,
+		draggable	: false,
+		resizable	: false,
+		width		: 'auto',
+		height		: 600,
+		modal		: true,
+		beforeClose	: function() { $(this).html('') },
+		buttons		: [
+					  	  {
+							  text	: LANG_OK,
 							  click	: function()
 									  {
 										  $(this).dialog("close");
@@ -242,6 +268,7 @@ $(function()
 		width		: 'auto',
 		height		: 600,
 		modal		: true,
+		beforeClose	: function() { $(this).html('') },
 		buttons		: [
 					  	  {
 							  text	: LANG_SAVE,
@@ -284,6 +311,7 @@ $(function()
 		width		: 'auto',
 		height		: 600,
 		modal		: true,
+		beforeClose	: function() { $(this).html('') },
 		buttons		: [
 					  	  {
 							  text	: LANG_OK,
@@ -309,6 +337,7 @@ $(function()
 		height		: 600,
 		minWidth	: 400,
 		modal		: true,
+		beforeClose	: function() { $(this).html('') },
 		buttons 	: [
 					  	  {
 							  text	: LANG_SAVE,
@@ -402,6 +431,43 @@ function get_create_form(url)
 		var msg = 'Error: get_create_form(' + url + ')';
 		$('#dialog_alert_message').html(msg);
 		$('#dialog_alert').dialog('open');
+	});
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Load update form via ajax
+ *
+ * @param string url
+ */
+
+function get_read_form(url)
+{
+	// Setup ajax
+	$.post(url, function(response)
+	{
+		$('#dialog_read').html(response);
+		
+		// Init tabs
+		$('#dialog_read').find('#tabs').tabs();
+		
+		$('#dialog_read').find('input').attr('disabled', 'disabled');
+		$('#dialog_read').find('textarea').attr('disabled', 'disabled');
+		$('#dialog_read').find('select').attr('disabled', 'disabled');
+		$('#dialog_read').find('a.remove_content').hide();
+		
+		$('#dialog_read').dialog('open');
+	})
+	.error(function showError(xhr, textStatus, errorThrown)
+	{
+		var title = xhr.status + " " + errorThrown;
+		var content = strip_html(xhr.responseText)
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
+		$("#dialog_error").dialog('open');
+		$('#preload').slideUp('fast');
 	});
 }
 
@@ -605,6 +671,7 @@ function create_content()
 						'target' 		: '',
 						'beforeSubmit' 	: showRequest,
 						'success' 		: showResponse,
+						'error'			: showError,
 						'url' 			: url,
 						'type' 			: 'post'
 				  };
@@ -621,20 +688,24 @@ function create_content()
 	// Post-submit callback
 	function showResponse(responseText, statusText, xhr, $form)
 	{
-		if(statusText == 'success')
-		{
-			get_content();
+		get_content();
+	
+		$('#preload').slideUp('fast');
 		
-			$('#preload').slideUp('fast');
-			
-			dialog.dialog('close');
-		}
-		else
-		{
-			$("#dialog_error").html(responseText)
-			$("#dialog_error").dialog('open');
-			$('#preload').slideUp('fast');
-		}
+		dialog.dialog('close');
+	}
+
+	// Error callback
+	function showError(xhr, textStatus, errorThrown)
+	{
+		//console.log(xhr);
+		var title = xhr.status + " " + errorThrown;
+		var content = strip_html(xhr.responseText)
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
+		$("#dialog_error").dialog('open');
+		$('#preload').slideUp('fast');
 	}
 
 	// Validate form
@@ -660,6 +731,7 @@ function update_content()
 					  'target'		: '',   
 					  'beforeSubmit': showRequest, 
 					  'success'		: showResponse,
+					  'error'		: showError,
 					  'url'			: url,
 					  'type'		: 'post'
 				  }; 
@@ -682,6 +754,19 @@ function update_content()
 		
 		dialog.dialog('close');
 	} 
+
+	// Error callback
+	function showError(xhr, textStatus, errorThrown)
+	{
+		//console.log(xhr);
+		var title = xhr.status + " " + errorThrown;
+		var content = strip_html(xhr.responseText)
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
+		$("#dialog_error").dialog('open');
+		$('#preload').slideUp('fast');
+	}
 	
 	// Validate form
 	if(form.valid())
@@ -752,6 +837,45 @@ function search_content()
 		$('#dialog_alert_message').html(msg);
 		$('#dialog_alert').dialog('open');
 	});
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Remove only tag for tag doctype, html, body 
+ * Remove tag and content for tag style, script
+ * 
+ * @param	mixed	html
+ * @return	mixed
+ */
+
+function strip_html(html)
+{
+	var taxt = html
+			        // Remove !DOCTYPE
+			        .replace(/<!DOCTYPE.*?>/ig, "")
+			        
+			        // Remove html tags
+			        .replace(/<html.*?>/ig, "")
+			        .replace(/<\/html.*?>/ig, "")
+			        
+			        // Remove content in head tags.
+			        .replace(/<\s*head[^>]*>[\s\S]*?<\/head>/mig, "")
+			        
+			        // Remove body tags
+			        .replace(/<body.*?>/ig, "")
+			        .replace(/<\/body.*?>/ig, "")
+			        
+			        // Remove content in script tags.
+			        .replace(/<\s*script[^>]*>[\s\S]*?<\/script>/mig, "")
+			        
+			        // Remove content in style tags.
+			        .replace(/<\s*style[^>]*>[\s\S]*?<\/style>/mig, "")
+			        
+			        // Remove content in comments.
+			        .replace(/<!--.*?-->/mig, "")
+        
+	return taxt;
 }
 
 // ------------------------------------------------------------------------
