@@ -274,6 +274,8 @@ body#Category .menu_main li#Category a
 	line-height: 35px;
 }
 
+#search_section input.search_left { padding-left: 20px }
+
 #search_section select { margin-right: 15px; }
 
 #buttton_advance_search { cursor: pointer; }
@@ -286,7 +288,6 @@ body#Category .menu_main li#Category a
 	display: none;
 	padding: 5px 10px;
 	margin-top: 10px;
-	
 }
 
 /*------------------------------------------------------------*/
@@ -309,7 +310,6 @@ body#Category .menu_main li#Category a
 	z-index: 1000;
 	
 	/* CSS3 */
-	
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -395,11 +395,19 @@ body#Category .menu_main li#Category a
 .attachfile ul li a.remove_content,
 a.remove_content
 {
-	background: url(../img/icon_close.png) no-repeat center;
 	cursor: pointer;
 	float: right;
-	height: 24px;
-	width: 24px;
+	height: 16px;
+	margin-top: 1px;
+	opacity: 0.3;
+	width: 16px;
+}
+
+.attachfile ul li a.delete_attachfile:hover, 
+.attachfile ul li a.remove_content:hover,
+a.remove_content:hover
+{
+	opacity: 0.9;
 }
 
 .ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix
