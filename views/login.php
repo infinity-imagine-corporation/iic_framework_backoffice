@@ -32,6 +32,7 @@ $(function()
 
 div.gadget 
 { 
+	background: #FFF;
 	border: 1px solid #666;
 	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
 	max-width: 480px; 
@@ -41,25 +42,51 @@ div.gadget
 
 #header
 {
+	height: 100px;
+	padding: 9px 10px 11px 158px;
+	margin: 0px;
+	text-align: right;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
+	text-align: left;
+}
+
+#header #logo
+{
+	background-color: rgba(255, 255, 255, 0.95);
+	border-radius: 3px;
+	box-shadow: none;
+	width: 128px;
+	height: 128px;
+	bottom: -190px;
+	left: 20px;
+}
+
+#header h2,
+#header h3
+{
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 3px;
+	/*box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8) inset, 0px 0px 5px rgba(255, 255, 255, 0.8);*/
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+	margin: 0px 0px 8px 0px;
+	padding: 3px 10px;
 }
 
 #form_section 
 { 
+	border-left: 1px dotted #DDD;
+	float: right;
+	width: 250px;
 	background: #FFF; 
-	padding: 32px 20px 20px 20px;
+	padding: 32px 30px 20px 30px;
+	
 }
 
- label
+label
 {
 	font-size: 14px;
-}
-
-#footer
-{
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+	font-weight: normal
 }
 
 p { margin: 0px; }
@@ -84,37 +111,14 @@ form
 	padding: 12px 16px;
 }
 
-#header
-{
-	height: 80px;
-	padding: 10px;
-	margin: 0px;
-	text-align: right;
-}
-
-#header #logo
-{
-	background-color: rgba(255, 255, 255, 0.95);
-	border-radius: 3px;
-	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
-	width: 128px;
-	height: 128px;
-	top: -14px;
-	left: 14px;
-}
-
-#header img
-{
-	width: 320px;
-}
-
 #footer
 {
-	background: #EEE;	
-	color: #666;
+	color: #999;
 	font-size: 11px;
-	padding: 5px;
+	padding: 15px 5px 5px 5px;
 	text-align: center;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
 </style>
 </head>
@@ -124,9 +128,6 @@ form
 	<div class="gadget">
 		<div id="header">
 			<div id="logo"></div>
-			<h2><?php echo $theme['header_text_1'] ?></h2>
-			<?php echo image_asset('line_gradient_300px.png', 'backoffice', array('alt'=>'line', 'width'=>'100%', 'height'=>'1')); ?>
-			<h3><?php echo $theme['header_text_2'] ?></h3>
 		</div>
 		<div id="form_section">
 			<p id="error_msg" class="center red text_12"><?php echo $error_msg ?></p>
@@ -140,7 +141,7 @@ form
 				</div>
 			<?php echo form_close() ?>
 		</div>
-		<div id="footer"><?php echo $theme['footer_text'] ?></div>
+		<div id="footer" class="clear"><?php echo $theme['footer_text'] ?></div>
 	</div>
 </div>
 </body>
