@@ -1,6 +1,13 @@
 Backoffice Module
 =================
 
+2012-09-16	v.0.3.0	
+-------------------
+
+- Updated to minimalist layout
+- Added default logo and header image
+- Added bootstrap theme
+
 2012-07-01	v.0.2.0	
 -------------------
 
