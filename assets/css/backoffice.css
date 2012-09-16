@@ -339,6 +339,21 @@ body
 	margin-top: 0px;
 }
 
+/* ------------- */
+/* dialog_report */
+/* ------------- */
+
+#dialog_report ul
+{ 
+	margin: 15px 0px 25px 0px;
+	list-style: circle;
+}
+
+#dialog_report ul li ul
+{ 
+	margin: 5px 5px 15px 5px;
+}
+
 /* --- */
 /* Tab */
 /* --- */
