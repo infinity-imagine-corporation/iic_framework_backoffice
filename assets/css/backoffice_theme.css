@@ -86,7 +86,7 @@
 
 .table tbody tr:nth-child(even) { background-color: #E8F4FB; }
 
-.table tbody tr:hover { background-color: #FFFFCC; }
+.table.main tbody tr:hover { background-color: #FFFFCC; }
 .table tbody tr.checked { background-color: #B5DDF2; }
 
 .table th
@@ -112,10 +112,14 @@
 
 .table td
 {
-	cursor: pointer;
 	border: 1px solid #AAAAAA;
 	padding: 5px;
 	vertical-align: top;
+}
+
+.table.main td
+{
+	cursor: pointer;
 }
 
 .table td ul
