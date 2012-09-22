@@ -117,9 +117,17 @@ $(function()
 		var form_uri = $('#config_uri_form').val();
 		var id_content = $(this).parent().attr('rel');
 		var url = URL_SERVER + form_uri + '/' + id_content;
+		var is_readonly = ($('table.main.table tbody').attr('class') == 'readonly') ? true : false;
 
 		// Call ajax function
-		get_update_form(url);
+		if(is_readonly)
+		{
+			get_read_form(url);
+		}
+		else
+		{
+			get_update_form(url)
+		}
 	});
 	
 	// ------------------------------------------------------------------------
@@ -210,6 +218,7 @@ $(function()
 		width		: 890,
 		height		: 600,
 		modal		: false,
+		beforeClose	: function() { $(this).html('') },
 		buttons		: [
 					  	  {
 							  text	: 'WTF !!!',
@@ -218,6 +227,31 @@ $(function()
 									  	  $(this).html('');
 										  $(this).dialog('option', 'title', '');
 										  $(this).dialog('close');
+									  }
+						  }
+					  ]
+	});
+	
+	// ------------------------------------------------------------------------
+	// Dialog report
+	// ------------------------------------------------------------------------
+
+	$('#dialog_report').dialog
+	({
+		title		: 'รายงานผล',
+		autoOpen	: false,
+		draggable	: false,
+		resizable	: false,
+		width		: 'auto',
+		height		: 600,
+		modal		: true,
+		beforeClose	: function() { $(this).html('') },
+		buttons		: [
+					  	  {
+							  text	: LANG_OK,
+							  click	: function()
+									  {
+										  $(this).dialog("close");
 									  }
 						  }
 					  ]
@@ -236,6 +270,7 @@ $(function()
 		width		: 'auto',
 		height		: 600,
 		modal		: true,
+		beforeClose	: function() { $(this).html('') },
 		buttons		: [
 					  	  {
 							  text	: LANG_SAVE,
@@ -266,6 +301,31 @@ $(function()
 	})
 	
 	// ------------------------------------------------------------------------
+	// Dialog read
+	// ------------------------------------------------------------------------
+
+	$('#dialog_read').dialog
+	({
+		title		: '',
+		autoOpen	: false,
+		draggable	: false,
+		resizable	: false,
+		width		: 'auto',
+		height		: 600,
+		modal		: true,
+		beforeClose	: function() { $(this).html('') },
+		buttons		: [
+					  	  {
+							  text	: LANG_OK,
+							  click	: function()
+									  {
+										  $('#dialog_read').dialog('close')
+									  }
+						  }
+					  ]
+	});
+	
+	// ------------------------------------------------------------------------
 	// Dialog update
 	// ------------------------------------------------------------------------
 
@@ -279,6 +339,7 @@ $(function()
 		height		: 600,
 		minWidth	: 400,
 		modal		: true,
+		beforeClose	: function() { $(this).html('') },
 		buttons 	: [
 					  	  {
 							  text	: LANG_SAVE,
@@ -372,6 +433,43 @@ function get_create_form(url)
 		var msg = 'Error: get_create_form(' + url + ')';
 		$('#dialog_alert_message').html(msg);
 		$('#dialog_alert').dialog('open');
+	});
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Load update form via ajax
+ *
+ * @param string url
+ */
+
+function get_read_form(url)
+{
+	// Setup ajax
+	$.post(url, function(response)
+	{
+		$('#dialog_read').html(response);
+		
+		// Init tabs
+		$('#dialog_read').find('#tabs').tabs();
+		
+		$('#dialog_read').find('input').attr('disabled', 'disabled');
+		$('#dialog_read').find('textarea').attr('disabled', 'disabled');
+		$('#dialog_read').find('select').attr('disabled', 'disabled');
+		$('#dialog_read').find('a.remove_content').hide();
+		
+		$('#dialog_read').dialog('open');
+	})
+	.error(function showError(xhr, textStatus, errorThrown)
+	{
+		var title = xhr.status + " " + errorThrown;
+		var content = strip_html(xhr.responseText)
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
+		$("#dialog_error").dialog('open');
+		$('#preload').slideUp('fast');
 	});
 }
 
