@@ -1,7 +1,4 @@
-<?php 	 
-date_default_timezone_set('Asia/Bangkok');
-$theme = Modules::run('backoffice/theme/get_theme');
-?>
+<?php $theme = Modules::run('backoffice/theme/get_theme'); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
