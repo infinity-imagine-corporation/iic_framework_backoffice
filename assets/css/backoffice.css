@@ -371,13 +371,18 @@ body
 	max-width: 100%; 
 }
 
+/* ---- */
+/* Form */
+/* ---- */
+
 .dialog input[type=text], 
 .dialog input[type=password], 
 .dialog input[type=file], 
 .dialog select, 
 .dialog textarea
 {
-	width: 100%	
+	width: 100%;
+	/*max-width: 366px;*/
 }
 
 .dialog > p
