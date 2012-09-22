@@ -37,12 +37,12 @@ $(function()
 		if(advance_search_section.css('display') == "none")
 		{
 			advance_search_section.slideDown();
-			arrow.html('&#x25BC;')
+			arrow.html('&#x25BC;');
 		}
 		else
 		{
 			advance_search_section.slideUp();
-			arrow.html('&#x25C0;')
+			arrow.html('&#x25C0;');
 		}
 	});
 	
@@ -139,7 +139,7 @@ $(function()
 		}
 		else
 		{
-			var msg = 'โปรดเลือ�?ข้อมูลอย่างน้อย 1 �?ถว.';
+			var msg = 'โปรดเลือ�?ข้อมูลอย่างน้อย 1 �?ถว.';
 			$('#dialog_alert_message').html(msg);
 
 			// Open dialog
