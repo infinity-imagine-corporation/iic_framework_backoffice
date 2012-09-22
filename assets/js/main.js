@@ -428,11 +428,15 @@ function get_create_form(url)
 		$('#dialog_create').html(response);
 		$('#dialog_create').dialog('open')
 	})
-	.error(function()
+	.error(function showError(xhr, textStatus, errorThrown)
 	{
-		var msg = 'Error: get_create_form(' + url + ')';
-		$('#dialog_alert_message').html(msg);
-		$('#dialog_alert').dialog('open');
+		var title = xhr.status + " " + errorThrown;
+		var content = strip_html(xhr.responseText)
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
+		$("#dialog_error").dialog('open');
+		$('#preload').slideUp('fast');
 	});
 }
 
@@ -489,11 +493,15 @@ function get_update_form(url)
 		$('#dialog_update').html(response);
 		$('#dialog_update').dialog('open');
 	})
-	.error(function()
+	.error(function(xhr, textStatus, errorThrown)
 	{
-		var msg = 'Error: get_update_form(' + url + ')';
-		$('#dialog_alert_message').html(msg);
-		$('#dialog_alert').dialog('open');
+		var title = xhr.status + " " + errorThrown;
+		var content = url + '<hr />' + strip_html(xhr.responseText)
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
+		$("#dialog_error").dialog('open');
+		$('#preload').slideUp('fast');
 	});
 }
 
@@ -551,11 +559,15 @@ function get_content(limit, offset)
 	{ 
 		$('#preload').slideUp('fast'); 
 	})
-	.error(function() 
-	{  
-		var msg = 'Error: list_content(' + limit + ', ' + offset + ')';
-		$('#dialog_alert_message').html(msg);
-		$('#dialog_alert').dialog('open');
+	.error(function(xhr, textStatus, errorThrown)
+	{
+		var title = xhr.status + " " + errorThrown;
+		var content = url + '<hr />' + strip_html(xhr.responseText)
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
+		$("#dialog_error").dialog('open');
+		$('#preload').slideUp('fast');
 	});
 }
 
@@ -585,12 +597,16 @@ function get_content(limit, offset)
 	{ 
 		$('#preload').slideUp('fast'); 
 	})
-	.error(function(response) 
-	{  
-		$("#dialog_error").html(response)
+	.error(function showError(xhr, textStatus, errorThrown)
+	{
+		var title = xhr.status + " " + errorThrown;
+		var content = strip_html(xhr.responseText)
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
 		$("#dialog_error").dialog('open');
 		$('#preload').slideUp('fast');
-	});	
+	});
  }
 
 // ------------------------------------------------------------------------
@@ -702,7 +718,7 @@ function create_content()
 	{
 		//console.log(xhr);
 		var title = xhr.status + " " + errorThrown;
-		var content = strip_html(xhr.responseText)
+		var content = url + '<hr />' + strip_html(xhr.responseText)
 		
 		$("#dialog_error").html(content);
 		$("#dialog_error").dialog('option', 'title', title);
@@ -838,11 +854,15 @@ function search_content()
 	{
 		update_table_content(response);
 	}, "json")
-	.error(function() 
-	{  
-		var msg = 'Error: search_content(' + url + ')';
-		$('#dialog_alert_message').html(msg);
-		$('#dialog_alert').dialog('open');
+	.error(function showError(xhr, textStatus, errorThrown)
+	{
+		var title = xhr.status + " " + errorThrown;
+		var content = strip_html(xhr.responseText)
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
+		$("#dialog_error").dialog('open');
+		$('#preload').slideUp('fast');
 	});
 }
 
