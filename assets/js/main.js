@@ -562,7 +562,39 @@ function get_content(limit, offset)
 	.error(function(xhr, textStatus, errorThrown)
 	{
 		var title = xhr.status + " " + errorThrown;
-		var content = url + '<hr />' + strip_html(xhr.responseText)
+		var content = url + '<hr />' + strip_html(xhr.responseText);
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
+		$("#dialog_error").dialog('open');
+		$('#preload').slideUp('fast');
+	});
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Search content via ajax
+ */	
+ 
+function search_content()
+{
+	// Setup variable
+	var url = URL_SERVER + $('#config_uri_search').val();
+	var data = {
+					'keyword'	: $('#keyword').val(),
+					'criteria'	: $('#criteria').val()
+			   };
+	
+	// Setup ajax
+	$.post(url, data, function(response)
+	{
+		update_table_content(response);
+	}, "json")
+	.error(function showError(xhr, textStatus, errorThrown)
+	{
+		var title = xhr.status + " " + errorThrown;
+		var content = url + '<hr />' + strip_html(xhr.responseText);
 		
 		$("#dialog_error").html(content);
 		$("#dialog_error").dialog('option', 'title', title);
@@ -577,8 +609,8 @@ function get_content(limit, offset)
  * Sort content via ajax
  */	
  
- function sort_content(order_by, order_direction)
- {
+function sort_content(order_by, order_direction)
+{
 	var url = URL_SERVER + $('#config_uri_list').val()
 	var data = {
 					'order_by'			: order_by,
@@ -600,14 +632,14 @@ function get_content(limit, offset)
 	.error(function showError(xhr, textStatus, errorThrown)
 	{
 		var title = xhr.status + " " + errorThrown;
-		var content = strip_html(xhr.responseText)
+		var content = url + '<hr />' + strip_html(xhr.responseText);
 		
 		$("#dialog_error").html(content);
 		$("#dialog_error").dialog('option', 'title', title);
 		$("#dialog_error").dialog('open');
 		$('#preload').slideUp('fast');
 	});
- }
+}
 
 // ------------------------------------------------------------------------
 
@@ -669,7 +701,7 @@ function update_table_content(content)
 		var total_column = $('thead th').length;
 		
 		// Update table content			
-		$("tbody").html('<td align="center" colspan="'+total_column+'">'+LANG_NO_RESULT_FOUND+'</td>');	
+		$("tbody").html('<td align="center" colspan="' + total_column + '">' + LANG_NO_RESULT_FOUND + '</td>');	
 	}
 }
 
@@ -824,38 +856,6 @@ function delete_content()
 	.error(function(xhr, textStatus, errorThrown) 
 	{  
 		//console.log(xhr);
-		var title = xhr.status + " " + errorThrown;
-		var content = strip_html(xhr.responseText)
-		
-		$("#dialog_error").html(content);
-		$("#dialog_error").dialog('option', 'title', title);
-		$("#dialog_error").dialog('open');
-		$('#preload').slideUp('fast');
-	});
-}
-
-// ------------------------------------------------------------------------
-
-/**
- * Search content via ajax
- */	
- 
-function search_content()
-{
-	// Setup variable
-	var url = URL_SERVER + $('#config_uri_search').val();
-	var data = {
-					'keyword'	: $('#keyword').val(),
-					'criteria'	: $('#criteria').val()
-			   };
-	
-	// Setup ajax
-	$.post(url, data, function(response)
-	{
-		update_table_content(response);
-	}, "json")
-	.error(function showError(xhr, textStatus, errorThrown)
-	{
 		var title = xhr.status + " " + errorThrown;
 		var content = strip_html(xhr.responseText)
 		
