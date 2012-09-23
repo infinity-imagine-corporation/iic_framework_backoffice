@@ -17,6 +17,10 @@
 			{
 				$address .= anchor($data['link'], $data['label']);
 			}
+			else if($data['link'] == '')
+			{
+				$address .= '&nbsp;&nbsp;<span class="text_9">&#x25B6;</span>&nbsp;&nbsp;'.$data['label'];
+			}
 			else 
 			{
 				$address .= '&nbsp;&nbsp;<span class="text_9">&#x25B6;</span>&nbsp;&nbsp;'.anchor($data['link'], $data['label']);

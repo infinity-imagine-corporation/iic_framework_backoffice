@@ -256,6 +256,31 @@ $(function()
 	});
 	
 	// ------------------------------------------------------------------------
+	// Dialog report
+	// ------------------------------------------------------------------------
+
+	$('#dialog_report').dialog
+	({
+		title		: 'รายงานผล',
+		autoOpen	: false,
+		draggable	: false,
+		resizable	: false,
+		width		: 'auto',
+		height		: 600,
+		modal		: true,
+		beforeClose	: function() { $(this).html('') },
+		buttons		: [
+					  	  {
+							  text	: LANG_OK,
+							  click	: function()
+									  {
+										  $(this).dialog("close");
+									  }
+						  }
+					  ]
+	});
+	
+	// ------------------------------------------------------------------------
 	// Dialog create
 	// ------------------------------------------------------------------------
 
@@ -426,11 +451,52 @@ function get_create_form(url)
 		$('#dialog_create').html(response);
 		$('#dialog_create').dialog('open')
 	})
-	.error(function()
+	.error(function showError(xhr, textStatus, errorThrown)
 	{
-		var msg = 'Error: get_create_form(' + url + ')';
-		$('#dialog_alert_message').html(msg);
-		$('#dialog_alert').dialog('open');
+		var title = xhr.status + " " + errorThrown;
+		var content = strip_html(xhr.responseText)
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
+		$("#dialog_error").dialog('open');
+		$('#preload').slideUp('fast');
+	});
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Load update form via ajax
+ *
+ * @param string url
+ */
+
+function get_read_form(url)
+{
+	// Setup ajax
+	$.post(url, function(response)
+	{
+		$('#dialog_read').html(response);
+		
+		// Init tabs
+		$('#dialog_read').find('#tabs').tabs();
+		
+		$('#dialog_read').find('input').attr('disabled', 'disabled');
+		$('#dialog_read').find('textarea').attr('disabled', 'disabled');
+		$('#dialog_read').find('select').attr('disabled', 'disabled');
+		$('#dialog_read').find('a.remove_content').hide();
+		
+		$('#dialog_read').dialog('open');
+	})
+	.error(function showError(xhr, textStatus, errorThrown)
+	{
+		var title = xhr.status + " " + errorThrown;
+		var content = strip_html(xhr.responseText)
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
+		$("#dialog_error").dialog('open');
+		$('#preload').slideUp('fast');
 	});
 }
 
@@ -487,11 +553,15 @@ function get_update_form(url)
 		$('#dialog_update').html(response);
 		$('#dialog_update').dialog('open');
 	})
-	.error(function()
+	.error(function(xhr, textStatus, errorThrown)
 	{
-		var msg = 'Error: get_update_form(' + url + ')';
-		$('#dialog_alert_message').html(msg);
-		$('#dialog_alert').dialog('open');
+		var title = xhr.status + " " + errorThrown;
+		var content = url + '<hr />' + strip_html(xhr.responseText)
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
+		$("#dialog_error").dialog('open');
+		$('#preload').slideUp('fast');
 	});
 }
 
@@ -549,11 +619,47 @@ function get_content(limit, offset)
 	{ 
 		$('#preload').slideUp('fast'); 
 	})
-	.error(function() 
-	{  
-		var msg = 'Error: list_content(' + limit + ', ' + offset + ')';
-		$('#dialog_alert_message').html(msg);
-		$('#dialog_alert').dialog('open');
+	.error(function(xhr, textStatus, errorThrown)
+	{
+		var title = xhr.status + " " + errorThrown;
+		var content = url + '<hr />' + strip_html(xhr.responseText);
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
+		$("#dialog_error").dialog('open');
+		$('#preload').slideUp('fast');
+	});
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Search content via ajax
+ */	
+ 
+function search_content()
+{
+	// Setup variable
+	var url = URL_SERVER + $('#config_uri_search').val();
+	var data = {
+					'keyword'	: $('#keyword').val(),
+					'criteria'	: $('#criteria').val()
+			   };
+	
+	// Setup ajax
+	$.post(url, data, function(response)
+	{
+		update_table_content(response);
+	}, "json")
+	.error(function showError(xhr, textStatus, errorThrown)
+	{
+		var title = xhr.status + " " + errorThrown;
+		var content = url + '<hr />' + strip_html(xhr.responseText);
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
+		$("#dialog_error").dialog('open');
+		$('#preload').slideUp('fast');
 	});
 }
 
@@ -563,8 +669,8 @@ function get_content(limit, offset)
  * Sort content via ajax
  */	
  
- function sort_content(order_by, order_direction)
- {
+function sort_content(order_by, order_direction)
+{
 	var url = URL_SERVER + $('#config_uri_list').val()
 	var data = {
 					'order_by'			: order_by,
@@ -583,13 +689,17 @@ function get_content(limit, offset)
 	{ 
 		$('#preload').slideUp('fast'); 
 	})
-	.error(function(response) 
-	{  
-		$("#dialog_error").html(response)
+	.error(function showError(xhr, textStatus, errorThrown)
+	{
+		var title = xhr.status + " " + errorThrown;
+		var content = url + '<hr />' + strip_html(xhr.responseText);
+		
+		$("#dialog_error").html(content);
+		$("#dialog_error").dialog('option', 'title', title);
 		$("#dialog_error").dialog('open');
 		$('#preload').slideUp('fast');
-	});	
- }
+	});
+}
 
 // ------------------------------------------------------------------------
 
@@ -651,7 +761,7 @@ function update_table_content(content)
 		var total_column = $('thead th').length;
 		
 		// Update table content			
-		$("tbody").html('<td align="center" colspan="'+total_column+'">'+LANG_NO_RESULT_FOUND+'</td>');	
+		$("tbody").html('<td align="center" colspan="' + total_column + '">' + LANG_NO_RESULT_FOUND + '</td>');	
 	}
 }
 
@@ -700,7 +810,7 @@ function create_content()
 	{
 		//console.log(xhr);
 		var title = xhr.status + " " + errorThrown;
-		var content = strip_html(xhr.responseText)
+		var content = url + '<hr />' + strip_html(xhr.responseText)
 		
 		$("#dialog_error").html(content);
 		$("#dialog_error").dialog('option', 'title', title);
@@ -806,34 +916,6 @@ function delete_content()
 	.error(function() 
 	{  
 		var msg = 'Error: delete_content(' + url + ')';
-		$('#dialog_alert_message').html(msg);
-		$('#dialog_alert').dialog('open');
-	});
-}
-
-// ------------------------------------------------------------------------
-
-/**
- * Search content via ajax
- */	
- 
-function search_content()
-{
-	// Setup variable
-	var url = URL_SERVER + $('#config_uri_search').val();
-	var data = {
-					'keyword'	: $('#keyword').val(),
-					'criteria'	: $('#criteria').val()
-			   };
-	
-	// Setup ajax
-	$.post(url, data, function(response)
-	{
-		update_table_content(response);
-	}, "json")
-	.error(function() 
-	{  
-		var msg = 'Error: search_content(' + url + ')';
 		$('#dialog_alert_message').html(msg);
 		$('#dialog_alert').dialog('open');
 	});
