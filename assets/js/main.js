@@ -50,7 +50,7 @@ $(function()
 	// Sort table content when click th
 	// ------------------------------------------------------------------------
 	
-	$('table.main.table th').toggle
+	$('table.main.table th:not(th:has(input[type=checkbox]))').toggle
 	(
 		function() 
 		{
@@ -454,7 +454,7 @@ function get_create_form(url)
 	.error(function showError(xhr, textStatus, errorThrown)
 	{
 		var title = xhr.status + " " + errorThrown;
-		var content = strip_html(xhr.responseText)
+		var content = url + '<hr />' + strip_html(xhr.responseText);
 		
 		$("#dialog_error").html(content);
 		$("#dialog_error").dialog('option', 'title', title);
@@ -491,7 +491,7 @@ function get_read_form(url)
 	.error(function showError(xhr, textStatus, errorThrown)
 	{
 		var title = xhr.status + " " + errorThrown;
-		var content = strip_html(xhr.responseText)
+		var content = url + '<hr />' + strip_html(xhr.responseText);
 		
 		$("#dialog_error").html(content);
 		$("#dialog_error").dialog('option', 'title', title);
@@ -528,7 +528,7 @@ function get_read_form(url)
 	.error(function showError(xhr, textStatus, errorThrown)
 	{
 		var title = xhr.status + " " + errorThrown;
-		var content = strip_html(xhr.responseText)
+		var content = url + '<hr />' + strip_html(xhr.responseText);
 		
 		$("#dialog_error").html(content);
 		$("#dialog_error").dialog('option', 'title', title);
@@ -556,7 +556,7 @@ function get_update_form(url)
 	.error(function(xhr, textStatus, errorThrown)
 	{
 		var title = xhr.status + " " + errorThrown;
-		var content = url + '<hr />' + strip_html(xhr.responseText)
+		var content = url + '<hr />' + strip_html(xhr.responseText);
 		
 		$("#dialog_error").html(content);
 		$("#dialog_error").dialog('option', 'title', title);
