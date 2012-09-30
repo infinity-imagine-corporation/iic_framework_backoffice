@@ -22,6 +22,7 @@ $content['advance_search'] = (isset($content['advance_search'])) ? $content['adv
 		<?php if ($button['create']['is_enable']): ?>
 		<button class="button_create"><?php echo $button['create']['label'] ?></button>
 		<?php endif ?>
+		<?php if(isset($button['additional_top_button']) && $button['additional_top_button'] == TRUE) $this->load->view($page.'_top_button'); ?>
 		<div id="search_section">
 			<input type="text" name="keyword" id="keyword" class="search_left" />
 			<label class="inline" for="criteria"><?php echo $this->lang->line('in') ?></label>
@@ -64,5 +65,6 @@ $content['advance_search'] = (isset($content['advance_search'])) ? $content['adv
 		<?php if ($button['delete']['is_enable']): ?>
 		<button class="button_delete"><?php echo $button['delete']['label'] ?></button>
 		<?php endif ?>
+		<?php if(isset($button['additional_bottom_button']) && $button['additional_bottom_button'] == TRUE) $this->load->view($page.'_bottom_button'); ?>
 	</div>
 </div>
