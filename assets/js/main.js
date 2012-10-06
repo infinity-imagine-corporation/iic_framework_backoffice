@@ -76,14 +76,16 @@ $(function()
 	// Select all
 	$('#select_all').live('click', function()
 	{
+		var root = $(this).parent().parent().parent().parent();
+		
 		if($(this).attr('checked') == 'checked')
 		{
-			$('tbody').find('input[type=checkbox]').attr('checked', 'checked').parent().parent().addClass('checked');
+			root.find('tbody').find('input[type=checkbox]').attr('checked', 'checked').parent().parent().addClass('checked');
 		}
 		else
 		{
-			$('tbody').find('input[type=checkbox]').removeAttr('checked');
-			$('tbody').find('tr').removeClass('checked');
+			root.find('tbody').find('input[type=checkbox]').removeAttr('checked');
+			root.find('tbody').find('tr').removeClass('checked');
 		}
 	});
 	
