@@ -1,5 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Backoffice extends MX_Controller 
+
+class Backoffice extends IIC_Controller 
 {	
 	// ------------------------------------------------------------------------
 	// Constructor
