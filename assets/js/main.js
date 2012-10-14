@@ -654,11 +654,26 @@ function sort_content(order_by, order_direction)
 function generate_html(content)
 {
 	var list = '';
+	var is_readonly = $('table.main > tbody').hasClass('readonly');
+	var is_deletable = $('table.main > tbody').hasClass('deletable');
+
+	//console.log('is_readonly:', is_readonly);
+	//console.log('is_deletable:', is_deletable);
 	 
 	$.each(content, function(i, data) 
 	{		
 		list += '<tr rel="' + data['id'] + '">';
-		list += '<td><input type="checkbox" id="' + data['id'] + '" value="' + data['id'] + '" /></td>';
+
+		if(is_readonly === true || is_deletable === false)
+		{
+			row_header = i + 1;
+		}
+		else
+		{
+			row_header = '<input type="checkbox" id="' + data['id'] + '" value="' + data['id'] + '" />';
+		}
+
+		list += '<td class="center">' + row_header + '</td>';
 		
 		$('table.main.table thead th:not(:first-child)').each(function(index) 
 		{		
@@ -666,7 +681,7 @@ function generate_html(content)
 			align = $(this).attr('align');			
 			
 			list += '<td class="'+ align + '">' + data[field] + '</td>';
-		})
+		});
 				
 		list += '</tr>';
 	});

@@ -43,7 +43,11 @@ $content['advance_search'] = (isset($content['advance_search'])) ? $content['adv
 	<table class="main table">
 		<thead>
 			<tr>
-				<th class="ui-state-default"><input type="checkbox" id="select_all" /></th>
+				<th class="ui-state-default">
+				<?php if ($button['delete']['is_enable']): ?>
+				<input type="checkbox" id="select_all" />
+				<?php endif ?>
+				</th>
 				<?php
 				foreach($th as $data)
 				{
@@ -54,7 +58,7 @@ $content['advance_search'] = (isset($content['advance_search'])) ? $content['adv
 				?>
 			</tr>
 		</thead>
-		<tbody <?php if($content['readonly']) echo 'class="readonly"' ?>>
+		<tbody class="<?php if($content['readonly']) echo 'readonly"'; if($button['delete']['is_enable']) echo 'deletable"' ?>">
 			<?php echo'<tr><td colspan="'.(count($th) + 1).'" class="center">'.$this->lang->line('no_result_found').'</td></tr>'; ?>
 		</tbody>
 	</table>

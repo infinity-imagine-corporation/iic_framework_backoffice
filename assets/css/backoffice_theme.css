@@ -67,6 +67,7 @@
 {
 	background-image: url(../img/logo_40px.png);	
 }
+
 /*------------------------------------------------------------------------*/
 /* Table */
 /*------------------------------------------------------------------------*/
@@ -102,8 +103,6 @@
 	white-space: nowrap;
 }
 
-.main.table th { cursor: pointer; }
-
 .table th:first-child { width: 20px; }
 
 /*.table th:hover	{ background-color: #36AAFF; border: 1px solid #36AAFF; }*/
@@ -134,6 +133,11 @@
 	margin: 0px;
 	padding: 0px;
 }
+
+/* Main table */
+
+table.main.table th { cursor: pointer; }
+table.main.table td.readonly input[type=checkbox] { display: none; }
 
 /*------------------------------------------------------------------------*/
 /* Footer */
