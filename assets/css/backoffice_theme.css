@@ -13,17 +13,18 @@
 	margin: 0 0 20px 0;
 }
 
-#header h1
+#header + h1
 {
-	float:left;
+	color: #333;
 	font-size: 28px;
 	font-weight: bold;
-	line-height: 80px;
-	margin: 0px 0px 0px 10px;
-	text-align: left;
-	
-	/* CSS3 */
-	text-shadow: 1px 1px 2px #000;
+	margin: -10px 0px 10px 15px;
+}
+
+#header + h1 + hr
+{
+	border-top-style: dotted;
+	margin: 0px 15px 15px 15px;
 }
 
 #header h2

@@ -14,9 +14,11 @@
 			<?php $this->load->view('backoffice/menu'); ?>
 		</div>
 	</div>
-	<div id="navigator">
+	<h1><?php echo $title ?></h1>
+	<hr />
+	<!-- <div id="navigator">
 		<?php $this->load->view('backoffice/navigator'); ?>
-	</div>
+	</div> -->
 	
 	<div id="content">
 		<div id="preload">Loading...</div>
