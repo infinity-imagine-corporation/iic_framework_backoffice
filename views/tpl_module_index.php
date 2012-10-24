@@ -22,6 +22,7 @@ $content['advance_search'] = (isset($content['advance_search'])) ? $content['adv
 		<?php if ($button['create']['is_enable']): ?>
 		<button class="button_create"><?php echo $button['create']['label'] ?></button>
 		<?php endif ?>
+		<?php if(isset($button['additional_top_button']) && $button['additional_top_button'] == TRUE) $this->load->view($page.'_top_button'); ?>
 		<div id="search_section">
 			<input type="text" name="keyword" id="keyword" class="search_left" />
 			<label class="inline" for="criteria"><?php echo $this->lang->line('in') ?></label>
@@ -42,7 +43,11 @@ $content['advance_search'] = (isset($content['advance_search'])) ? $content['adv
 	<table class="main table">
 		<thead>
 			<tr>
-				<th class="ui-state-default"><input type="checkbox" id="select_all" /></th>
+				<th class="ui-state-default">
+				<?php if ($button['delete']['is_enable']): ?>
+				<input type="checkbox" id="select_all" />
+				<?php endif ?>
+				</th>
 				<?php
 				foreach($th as $data)
 				{
@@ -53,7 +58,7 @@ $content['advance_search'] = (isset($content['advance_search'])) ? $content['adv
 				?>
 			</tr>
 		</thead>
-		<tbody <?php if($content['readonly']) echo 'class="readonly"' ?>>
+		<tbody class="<?php if($content['readonly']) echo 'readonly"'; if($button['delete']['is_enable']) echo 'deletable"' ?>">
 			<?php echo'<tr><td colspan="'.(count($th) + 1).'" class="center">'.$this->lang->line('no_result_found').'</td></tr>'; ?>
 		</tbody>
 	</table>
@@ -64,5 +69,6 @@ $content['advance_search'] = (isset($content['advance_search'])) ? $content['adv
 		<?php if ($button['delete']['is_enable']): ?>
 		<button class="button_delete"><?php echo $button['delete']['label'] ?></button>
 		<?php endif ?>
+		<?php if(isset($button['additional_bottom_button']) && $button['additional_bottom_button'] == TRUE) $this->load->view($page.'_bottom_button'); ?>
 	</div>
 </div>

@@ -76,14 +76,16 @@ $(function()
 	// Select all
 	$('#select_all').live('click', function()
 	{
+		var root = $(this).parent().parent().parent().parent();
+		
 		if($(this).attr('checked') == 'checked')
 		{
-			$('tbody').find('input[type=checkbox]').attr('checked', 'checked').parent().parent().addClass('checked');
+			root.find('tbody').find('input[type=checkbox]').attr('checked', 'checked').parent().parent().addClass('checked');
 		}
 		else
 		{
-			$('tbody').find('input[type=checkbox]').removeAttr('checked');
-			$('tbody').find('tr').removeClass('checked');
+			root.find('tbody').find('input[type=checkbox]').removeAttr('checked');
+			root.find('tbody').find('tr').removeClass('checked');
 		}
 	});
 	
@@ -576,7 +578,7 @@ function get_update_form(url)
 function adjust_layout()
 {
 	var page_height = $(window).height();
-	var content_height = (page_height - 94 - 35 - 17); // window - header - nav - footer
+	var content_height = (page_height - 109 - 35 - 17); // window - header - nav - footer
 	
 	// Set content min height
 	$('#content').css('min-height', content_height);
@@ -712,11 +714,26 @@ function sort_content(order_by, order_direction)
 function generate_html(content)
 {
 	var list = '';
+	var is_readonly = $('table.main > tbody').hasClass('readonly');
+	var is_deletable = $('table.main > tbody').hasClass('deletable');
+
+	//console.log('is_readonly:', is_readonly);
+	//console.log('is_deletable:', is_deletable);
 	 
 	$.each(content, function(i, data) 
 	{		
 		list += '<tr rel="' + data['id'] + '">';
-		list += '<td><input type="checkbox" id="' + data['id'] + '" value="' + data['id'] + '" /></td>';
+
+		if(is_readonly === true || is_deletable === false)
+		{
+			row_header = i + 1;
+		}
+		else
+		{
+			row_header = '<input type="checkbox" id="' + data['id'] + '" value="' + data['id'] + '" />';
+		}
+
+		list += '<td class="center">' + row_header + '</td>';
 		
 		$('table.main.table thead th:not(:first-child)').each(function(index) 
 		{		
@@ -724,7 +741,7 @@ function generate_html(content)
 			align = $(this).attr('align');			
 			
 			list += '<td class="'+ align + '">' + data[field] + '</td>';
-		})
+		});
 				
 		list += '</tr>';
 	});
