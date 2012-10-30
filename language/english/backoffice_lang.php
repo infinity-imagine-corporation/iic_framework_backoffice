@@ -27,6 +27,7 @@ $lang['page_user'] = 'System Users';
 $lang['page_group'] = 'Group';
 $lang['page_role'] = 'Role';
 $lang['page_log'] = 'System Log';
+$lang['page_region'] = 'Region';
 
 // -------------------------------------------------------------------
 // FORM
